@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{34FA0E43-50B5-4B96-8053-11A69D3755FD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ngin", "Ngin\Ngin.vcxproj", "{6E51BBE7-082F-46BB-89F8-05E6A702E802}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E51BBE7-082F-46BB-89F8-05E6A702E802}.Debug|x64.ActiveCfg = Debug|x64
+		{6E51BBE7-082F-46BB-89F8-05E6A702E802}.Debug|x64.Build.0 = Debug|x64
+		{6E51BBE7-082F-46BB-89F8-05E6A702E802}.Release|x64.ActiveCfg = Release|x64
+		{6E51BBE7-082F-46BB-89F8-05E6A702E802}.Release|x64.Build.0 = Release|x64
+		{34FA0E43-50B5-4B96-8053-11A69D3755FD}.Debug|x64.ActiveCfg = Debug|x64
+		{34FA0E43-50B5-4B96-8053-11A69D3755FD}.Debug|x64.Build.0 = Debug|x64
+		{34FA0E43-50B5-4B96-8053-11A69D3755FD}.Release|x64.ActiveCfg = Release|x64
+		{34FA0E43-50B5-4B96-8053-11A69D3755FD}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3FA227D-28D9-42E1-A038-F885B29BDB6D}
+	EndGlobalSection
+EndGlobal
