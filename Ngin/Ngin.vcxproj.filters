@@ -4,6 +4,9 @@
     <Filter Include="Ngin">
       <UniqueIdentifier>{3199897C-1DD0-8A0D-C6BC-7010B2D2060F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ngin\Events">
+      <UniqueIdentifier>{F5E3B244-6199-2B3A-EA8D-25115642223E}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ngin.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Ngin\EntryPoint.h">
       <Filter>Ngin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Events\ApplicationEvent.h">
+      <Filter>Ngin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Events\Event.h">
+      <Filter>Ngin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Events\KeyEvent.h">
+      <Filter>Ngin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Events\MouseEvent.h">
+      <Filter>Ngin\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Ngin\Log.h">
       <Filter>Ngin</Filter>

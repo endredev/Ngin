@@ -147,6 +147,10 @@
     <ClInclude Include="src\Ngin\Application.h" />
     <ClInclude Include="src\Ngin\Core.h" />
     <ClInclude Include="src\Ngin\EntryPoint.h" />
+    <ClInclude Include="src\Ngin\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Ngin\Events\Event.h" />
+    <ClInclude Include="src\Ngin\Events\KeyEvent.h" />
+    <ClInclude Include="src\Ngin\Events\MouseEvent.h" />
     <ClInclude Include="src\Ngin\Log.h" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ extern Ngin::Application* Ngin::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	Ngin::Log::Init();
+	Ngin::Log::Init();	
 	NG_WARN("Initialized");
 	NG_TRACE("TRACE");
 	NG_ERROR("Error");
