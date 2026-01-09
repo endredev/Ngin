@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Ngin {
 
 	class NG_API KeyEvent : public Event

@@ -1,3 +1,5 @@
+#include "ngpch.h"
+
 #include "Application.h"
 
 #include "Ngin/Events/ApplicationEvent.h"
