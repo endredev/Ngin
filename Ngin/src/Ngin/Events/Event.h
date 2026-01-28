@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Ngin/Core.h"
+#include <string>
+#include <functional>
+
 
 namespace Ngin {
 	enum class EventType 

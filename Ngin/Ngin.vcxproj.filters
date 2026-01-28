@@ -7,6 +7,9 @@
     <Filter Include="Ngin\Events">
       <UniqueIdentifier>{F5E3B244-6199-2B3A-EA8D-25115642223E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platforms">
+      <UniqueIdentifier>{DDACA145-4917-56BC-9255-0762FEFE3311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ngin.h" />
@@ -34,6 +37,12 @@
     <ClInclude Include="src\Ngin\Log.h">
       <Filter>Ngin</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\Window.h">
+      <Filter>Ngin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\WindowsWindow.h">
+      <Filter>Platforms</Filter>
+    </ClInclude>
     <ClInclude Include="src\ngpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="src\Ngin\Log.cpp">
       <Filter>Ngin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\WindowsWindow.cpp">
+      <Filter>Platforms</Filter>
     </ClCompile>
     <ClCompile Include="src\ngpch.cpp" />
   </ItemGroup>

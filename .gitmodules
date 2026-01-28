@@ -1,0 +1,3 @@
+[submodule "Ngin/vendor/GLFW"]
+	path = Ngin/vendor/GLFW
+	url = https://github.com/endredev/glfw.git

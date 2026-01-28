@@ -13,6 +13,12 @@ workspace "Ngin"
 	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Ngin/vendor/GLFW/include"
+
+include "Ngin/vendor/GLFW"
+	
 project "Ngin"
 	location "Ngin"
 	kind "SharedLib"
@@ -20,7 +26,7 @@ project "Ngin"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	
+
 	pchheader "ngpch.h"
 	pchsource "Ngin/src/ngpch.cpp"
 
@@ -33,7 +39,14 @@ project "Ngin"
 	includedirs
 	{
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/src"
+    	"%{prj.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -90,7 +103,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
