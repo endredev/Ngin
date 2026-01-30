@@ -1,8 +1,6 @@
 #include "ngpch.h"
 
 #include "Application.h"
-
-#include "Ngin/Events/ApplicationEvent.h"
 #include "Ngin/Log.h"
 
 #include <GLFW/glfw3.h>
@@ -11,6 +9,7 @@ namespace Ngin {
 	Ngin::Application::Application()
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 	}
 
 	Ngin::Application::~Application()
@@ -35,5 +34,18 @@ namespace Ngin {
 			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->OnUpdate();
 		}
+	}
+
+	void Application::OnEvent(Event& event)
+	{
+		EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnWindowClosed, this, std::placeholders::_1));
+		NG_CORE_INFO("{0}", event);
+	}
+
+	bool Application::OnWindowClosed(WindowCloseEvent& event)
+	{
+		m_Running = false;
+		return true;
 	}
 }
