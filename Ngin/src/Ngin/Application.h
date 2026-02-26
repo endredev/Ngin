@@ -1,22 +1,24 @@
 #pragma once
 #include "Core.h"
 #include "Events/Event.h"
-#include "Window.h"
+#include "SubsystemManager.h"
 #include "Ngin/Events/ApplicationEvent.h"
 
 namespace Ngin {
 	class NG_API Application
 	{
-	public: 
+	public:
 		Application();
 		virtual ~Application();
 		void Run();
 
 		void OnEvent(Event& event);
+
+		SubsystemManager& GetSubsystemManager() { return m_SubsystemManager; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& event);
 
-		std::unique_ptr<Window> m_Window;
+		SubsystemManager m_SubsystemManager;
 		bool m_Running = true;
 	};
 

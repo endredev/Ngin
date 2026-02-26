@@ -2,37 +2,38 @@
 
 #include "Application.h"
 #include "Ngin/Log.h"
+#include "Platforms/WindowSubsystem.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Ngin {
-	Ngin::Application::Application()
+
+	Application::Application()
 	{
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		auto* windowSys = m_SubsystemManager.Register<WindowSubsystem>();
+		windowSys->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_SubsystemManager.InitAll();
 	}
 
-	Ngin::Application::~Application()
+	Application::~Application()
 	{
+		m_SubsystemManager.ShutdownAll();
 	}
 
 	void Application::Run()
-	{	
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(EventCategoryApplication))
-		{
-			NG_TRACE(e);
-		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			NG_TRACE(e);
-		}
+	{
+		float lastTime = (float)glfwGetTime();
 
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 1);
+			float currentTime = (float)glfwGetTime();
+			float deltaTime = currentTime - lastTime;
+			lastTime = currentTime;
+
+			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
+
+			m_SubsystemManager.TickAll(deltaTime);
 		}
 	}
 
@@ -40,6 +41,9 @@ namespace Ngin {
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnWindowClosed, this, std::placeholders::_1));
+
+		m_SubsystemManager.OnEvent(event);
+
 		NG_CORE_INFO("{0}", event);
 	}
 
@@ -48,4 +52,5 @@ namespace Ngin {
 		m_Running = false;
 		return true;
 	}
+
 }

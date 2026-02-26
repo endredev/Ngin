@@ -2,6 +2,7 @@
 
 #include "Ngin/Core.h"
 #include <string>
+#include <sstream>
 #include <functional>
 
 
