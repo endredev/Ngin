@@ -13,6 +13,7 @@ namespace Ngin {
 		void Run();
 
 		void OnEvent(Event& event);
+		virtual void Tick(float deltaTime) {}
 
 		SubsystemManager& GetSubsystemManager() { return m_SubsystemManager; }
 	private:

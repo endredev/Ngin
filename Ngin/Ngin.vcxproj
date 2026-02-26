@@ -157,10 +157,13 @@
     <ClInclude Include="src\Ngin\Events\Event.h" />
     <ClInclude Include="src\Ngin\Events\KeyEvent.h" />
     <ClInclude Include="src\Ngin\Events\MouseEvent.h" />
+    <ClInclude Include="src\Ngin\KeyCodes.h" />
     <ClInclude Include="src\Ngin\Log.h" />
+    <ClInclude Include="src\Ngin\MouseCodes.h" />
     <ClInclude Include="src\Ngin\Subsystem.h" />
     <ClInclude Include="src\Ngin\SubsystemManager.h" />
     <ClInclude Include="src\Ngin\Window.h" />
+    <ClInclude Include="src\Platforms\InputSubsystem.h" />
     <ClInclude Include="src\Platforms\WindowSubsystem.h" />
     <ClInclude Include="src\Platforms\WindowsWindow.h" />
     <ClInclude Include="src\ngpch.h" />
@@ -169,6 +172,7 @@
     <ClCompile Include="src\Ngin\Application.cpp" />
     <ClCompile Include="src\Ngin\Log.cpp" />
     <ClCompile Include="src\Ngin\SubsystemManager.cpp" />
+    <ClCompile Include="src\Platforms\InputSubsystem.cpp" />
     <ClCompile Include="src\Platforms\WindowSubsystem.cpp" />
     <ClCompile Include="src\Platforms\WindowsWindow.cpp" />
     <ClCompile Include="src\ngpch.cpp">

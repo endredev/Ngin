@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "Ngin/Log.h"
 #include "Platforms/WindowSubsystem.h"
+#include "Platforms/InputSubsystem.h"
 
 #include <GLFW/glfw3.h>
 
@@ -12,6 +13,7 @@ namespace Ngin {
 	{
 		auto* windowSys = m_SubsystemManager.Register<WindowSubsystem>();
 		windowSys->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_SubsystemManager.Register<InputSubsystem>();
 		m_SubsystemManager.InitAll();
 	}
 
@@ -33,6 +35,10 @@ namespace Ngin {
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			// App tick
+			Tick(deltaTime);
+
+			// All the sub systems tick
 			m_SubsystemManager.TickAll(deltaTime);
 		}
 	}

@@ -34,7 +34,13 @@
     <ClInclude Include="src\Ngin\Events\MouseEvent.h">
       <Filter>Ngin\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\KeyCodes.h">
+      <Filter>Ngin</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ngin\Log.h">
+      <Filter>Ngin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\MouseCodes.h">
       <Filter>Ngin</Filter>
     </ClInclude>
     <ClInclude Include="src\Ngin\Subsystem.h">
@@ -45,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="src\Ngin\Window.h">
       <Filter>Ngin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\InputSubsystem.h">
+      <Filter>Platforms</Filter>
     </ClInclude>
     <ClInclude Include="src\Platforms\WindowSubsystem.h">
       <Filter>Platforms</Filter>
@@ -63,6 +72,9 @@
     </ClCompile>
     <ClCompile Include="src\Ngin\SubsystemManager.cpp">
       <Filter>Ngin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\InputSubsystem.cpp">
+      <Filter>Platforms</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\WindowSubsystem.cpp">
       <Filter>Platforms</Filter>
