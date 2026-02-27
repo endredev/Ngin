@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>ngpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NG_PLATFORM_WINDOWS;NG_BUILD_DLL;NG_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\GLFW\deps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -104,7 +104,7 @@
       <PrecompiledHeaderFile>ngpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NG_PLATFORM_WINDOWS;NG_BUILD_DLL;NG_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\GLFW\deps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>ngpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NG_PLATFORM_WINDOWS;NG_BUILD_DLL;NG_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\GLFW\deps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -160,21 +160,35 @@
     <ClInclude Include="src\Ngin\KeyCodes.h" />
     <ClInclude Include="src\Ngin\Log.h" />
     <ClInclude Include="src\Ngin\MouseCodes.h" />
+    <ClInclude Include="src\Ngin\Renderer\Buffer.h" />
+    <ClInclude Include="src\Ngin\Renderer\Shader.h" />
+    <ClInclude Include="src\Ngin\Renderer\VertexArray.h" />
     <ClInclude Include="src\Ngin\Subsystem.h" />
     <ClInclude Include="src\Ngin\SubsystemManager.h" />
     <ClInclude Include="src\Ngin\Window.h" />
-    <ClInclude Include="src\Platforms\InputSubsystem.h" />
-    <ClInclude Include="src\Platforms\WindowSubsystem.h" />
-    <ClInclude Include="src\Platforms\WindowsWindow.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Platforms\OpenGL\RendererSubsystem.h" />
+    <ClInclude Include="src\Platforms\Windows\InputSubsystem.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowSubsystem.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ngpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ngin\Application.cpp" />
     <ClCompile Include="src\Ngin\Log.cpp" />
     <ClCompile Include="src\Ngin\SubsystemManager.cpp" />
-    <ClCompile Include="src\Platforms\InputSubsystem.cpp" />
-    <ClCompile Include="src\Platforms\WindowSubsystem.cpp" />
-    <ClCompile Include="src\Platforms\WindowsWindow.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\Glad.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\RendererSubsystem.cpp" />
+    <ClCompile Include="src\Platforms\Windows\InputSubsystem.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowSubsystem.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ngpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

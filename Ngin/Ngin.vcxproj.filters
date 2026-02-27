@@ -7,8 +7,17 @@
     <Filter Include="Ngin\Events">
       <UniqueIdentifier>{F5E3B244-6199-2B3A-EA8D-25115642223E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ngin\Renderer">
+      <UniqueIdentifier>{F7C3F633-6384-726A-2CBF-BBE7983EB746}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platforms">
       <UniqueIdentifier>{DDACA145-4917-56BC-9255-0762FEFE3311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\OpenGL">
+      <UniqueIdentifier>{719BB998-5D94-D8EA-86C6-BD6F721EB8F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\Windows">
+      <UniqueIdentifier>{17E40808-83FA-069E-CC71-92BF38C7D725}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +52,15 @@
     <ClInclude Include="src\Ngin\MouseCodes.h">
       <Filter>Ngin</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\Buffer.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\Shader.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\VertexArray.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ngin\Subsystem.h">
       <Filter>Ngin</Filter>
     </ClInclude>
@@ -52,14 +70,26 @@
     <ClInclude Include="src\Ngin\Window.h">
       <Filter>Ngin</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\InputSubsystem.h">
-      <Filter>Platforms</Filter>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h">
+      <Filter>Platforms\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\WindowSubsystem.h">
-      <Filter>Platforms</Filter>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLShader.h">
+      <Filter>Platforms\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\WindowsWindow.h">
-      <Filter>Platforms</Filter>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\RendererSubsystem.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\Windows\InputSubsystem.h">
+      <Filter>Platforms\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\Windows\WindowSubsystem.h">
+      <Filter>Platforms\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\Windows\WindowsWindow.h">
+      <Filter>Platforms\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\ngpch.h" />
   </ItemGroup>
@@ -73,14 +103,29 @@
     <ClCompile Include="src\Ngin\SubsystemManager.cpp">
       <Filter>Ngin</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\InputSubsystem.cpp">
-      <Filter>Platforms</Filter>
+    <ClCompile Include="src\Platforms\OpenGL\Glad.cpp">
+      <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\WindowSubsystem.cpp">
-      <Filter>Platforms</Filter>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\WindowsWindow.cpp">
-      <Filter>Platforms</Filter>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLShader.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\RendererSubsystem.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\Windows\InputSubsystem.cpp">
+      <Filter>Platforms\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\Windows\WindowSubsystem.cpp">
+      <Filter>Platforms\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\Windows\WindowsWindow.cpp">
+      <Filter>Platforms\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\ngpch.cpp" />
   </ItemGroup>
