@@ -2,8 +2,9 @@
 
 #include "Application.h"
 #include "Ngin/Log.h"
-#include "Platforms/WindowSubsystem.h"
-#include "Platforms/InputSubsystem.h"
+#include "Platforms/Windows/WindowSubsystem.h"
+#include "Platforms/Windows/InputSubsystem.h"
+#include "Platforms/OpenGL/RendererSubsystem.h"
 
 #include <GLFW/glfw3.h>
 
@@ -13,6 +14,7 @@ namespace Ngin {
 	{
 		auto* windowSys = m_SubsystemManager.Register<WindowSubsystem>();
 		windowSys->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_SubsystemManager.Register<RendererSubsystem>();
 		m_SubsystemManager.Register<InputSubsystem>();
 		m_SubsystemManager.InitAll();
 	}
@@ -25,6 +27,7 @@ namespace Ngin {
 	void Application::Run()
 	{
 		float lastTime = (float)glfwGetTime();
+		auto* renderer = m_SubsystemManager.Get<RendererSubsystem>();
 
 		while (m_Running)
 		{
@@ -32,8 +35,7 @@ namespace Ngin {
 			float deltaTime = currentTime - lastTime;
 			lastTime = currentTime;
 
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			renderer->BeginFrame();
 
 			// App tick
 			Tick(deltaTime);
