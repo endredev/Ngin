@@ -13,6 +13,8 @@ namespace Ngin {
 		void Bind() const override;
 		void Unbind() const override;
 
+		void SetMat4(const std::string& name, const float* matrix) override;
+
 	private:
 		uint32_t m_RendererID;
 	};

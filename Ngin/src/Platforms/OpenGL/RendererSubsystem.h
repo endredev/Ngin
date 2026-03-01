@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Ngin/Subsystem.h"
-#include "Ngin/Renderer/VertexArray.h"
-#include "Ngin/Renderer/Shader.h"
 
 namespace Ngin {
 
@@ -13,7 +11,6 @@ namespace Ngin {
 		void OnShutdown() override;
 
 		void BeginFrame();
-		void Submit(VertexArray* va, Shader* shader);
 	};
 
 }

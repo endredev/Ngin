@@ -90,4 +90,10 @@ namespace Ngin {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetMat4(const std::string& name, const float* matrix)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, matrix);
+	}
+
 }

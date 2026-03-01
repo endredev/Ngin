@@ -1,6 +1,7 @@
 #include "ngpch.h"
 #include "RendererSubsystem.h"
 #include "Ngin/Log.h"
+#include "Ngin/Renderer/RenderCommand.h"
 
 #include <glad/gl.h>
 
@@ -18,15 +19,8 @@ namespace Ngin {
 
 	void RendererSubsystem::BeginFrame()
 	{
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-	}
-
-	void RendererSubsystem::Submit(VertexArray* va, Shader* shader)
-	{
-		shader->Bind();
-		va->Bind();
-		glDrawElements(GL_TRIANGLES, va->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		RenderCommand::SetClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+		RenderCommand::Clear();
 	}
 
 }

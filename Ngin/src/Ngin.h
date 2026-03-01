@@ -9,9 +9,8 @@
 #include "Ngin/MouseCodes.h";
 #include "Platforms/Windows/InputSubsystem.h";
 #include "Platforms/OpenGL/RendererSubsystem.h";
-#include "Ngin/Renderer/Buffer.h";
-#include "Ngin/Renderer/VertexArray.h";
-#include "Ngin/Renderer/Shader.h";
+#include "Ngin/Renderer/Renderer2D.h";
+#include "Ngin/Renderer/OrthographicCamera.h";
 
 // --- Entry point ---
 #include "Ngin/EntryPoint.h";

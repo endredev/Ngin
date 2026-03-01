@@ -7,7 +7,8 @@ namespace Ngin {
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
-		OpenGLVertexBuffer(float* vertices, uint32_t size);
+		OpenGLVertexBuffer(float* vertices, uint32_t size); // static
+		OpenGLVertexBuffer(uint32_t size);                  // dynamic
 		virtual ~OpenGLVertexBuffer();
 
 		void Bind() const override;
@@ -15,6 +16,8 @@ namespace Ngin {
 
 		void SetLayout(const BufferLayout& layout) override { m_Layout = layout; }
 		const BufferLayout& GetLayout() const override { return m_Layout; }
+
+		void SetData(const void* data, uint32_t size) override;
 
 	private:
 		uint32_t m_RendererID;
