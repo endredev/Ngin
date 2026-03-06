@@ -88,14 +88,14 @@ public:
 	{
 		m_Rotation += deltaTime;
 
-		// --- 3D: forgó kocka ---
+		// 3D cube
 		Ngin::Renderer::BeginScene(*m_Camera3D);
 
 		Ngin::Mat4 model = Ngin::Mat4::RotateY(m_Rotation) * Ngin::Mat4::RotateX(m_Rotation * 0.5f);
 		Ngin::Renderer::Submit(m_CubeVA.get(), m_CubeShader.get(), model.data);
 		Ngin::Renderer::EndScene();
 
-		// --- 2D: négyzetek ---
+		// 2D squares
 		Ngin::Renderer2D::BeginScene(*m_Camera2D);
 		Ngin::Renderer2D::DrawQuad(-1.3f,  0.7f, 0.2f, 0.2f,  0.8f, 0.2f, 0.2f);
 		Ngin::Renderer2D::DrawQuad(-1.3f,  0.4f, 0.2f, 0.2f,  0.2f, 0.8f, 0.2f);
