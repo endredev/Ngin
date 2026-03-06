@@ -98,7 +98,7 @@ namespace Ngin {
 		// VBO and IBO are owned by VAO's shared_ptrs — already deleted
 	}
 
-	void Renderer2D::BeginScene(const OrthographicCamera& camera)
+	void Renderer2D::BeginScene(const Camera& camera)
 	{
 		s_Data.VertexBufferPtr = s_Data.VertexBufferBase;
 		s_Data.IndexCount = 0;

@@ -61,10 +61,19 @@
     <ClInclude Include="src\Ngin\Renderer\Buffer.h">
       <Filter>Ngin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\Camera.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ngin\Renderer\OrthographicCamera.h">
       <Filter>Ngin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\PerspectiveCamera.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ngin\Renderer\RenderCommand.h">
+      <Filter>Ngin\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ngin\Renderer\Renderer.h">
       <Filter>Ngin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ngin\Renderer\Renderer2D.h">
@@ -116,6 +125,12 @@
       <Filter>Ngin</Filter>
     </ClCompile>
     <ClCompile Include="src\Ngin\Renderer\OrthographicCamera.cpp">
+      <Filter>Ngin\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ngin\Renderer\PerspectiveCamera.cpp">
+      <Filter>Ngin\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ngin\Renderer\Renderer.cpp">
       <Filter>Ngin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ngin\Renderer\Renderer2D.cpp">

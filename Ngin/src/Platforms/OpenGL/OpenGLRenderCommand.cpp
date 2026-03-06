@@ -12,7 +12,7 @@ namespace Ngin {
 
 	void RenderCommand::Clear()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	void RenderCommand::DrawIndexed(VertexArray* va, uint32_t indexCount)

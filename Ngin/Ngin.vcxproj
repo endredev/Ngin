@@ -162,8 +162,11 @@
     <ClInclude Include="src\Ngin\Math\Mat4.h" />
     <ClInclude Include="src\Ngin\MouseCodes.h" />
     <ClInclude Include="src\Ngin\Renderer\Buffer.h" />
+    <ClInclude Include="src\Ngin\Renderer\Camera.h" />
     <ClInclude Include="src\Ngin\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Ngin\Renderer\PerspectiveCamera.h" />
     <ClInclude Include="src\Ngin\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Ngin\Renderer\Renderer.h" />
     <ClInclude Include="src\Ngin\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Ngin\Renderer\Shader.h" />
     <ClInclude Include="src\Ngin\Renderer\VertexArray.h" />
@@ -183,6 +186,8 @@
     <ClCompile Include="src\Ngin\Application.cpp" />
     <ClCompile Include="src\Ngin\Log.cpp" />
     <ClCompile Include="src\Ngin\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Ngin\Renderer\PerspectiveCamera.cpp" />
+    <ClCompile Include="src\Ngin\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Ngin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Ngin\SubsystemManager.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\Glad.cpp">

@@ -5,13 +5,14 @@
 
 namespace Ngin {
 
-	class NG_API OrthographicCamera : public Camera
+	class NG_API PerspectiveCamera : public Camera
 	{
 	public:
-		OrthographicCamera(float left, float right, float bottom, float top);
+		// fovY: vertical field of view in radians
+		PerspectiveCamera(float fovY, float aspectRatio, float nearZ, float farZ);
 
-		void SetPosition(float x, float y, float z = 0.0f);
-		void SetRotation(float radians);
+		void SetPosition(float x, float y, float z);
+		void SetRotation(float pitch, float yaw); // radians
 
 		const float* GetViewProjectionMatrix() const override { return m_ViewProjectionMatrix; }
 
@@ -22,7 +23,8 @@ namespace Ngin {
 		float m_ViewProjectionMatrix[16];
 
 		float m_Position[3] = { 0.0f, 0.0f, 0.0f };
-		float m_Rotation = 0.0f;
+		float m_Pitch = 0.0f;
+		float m_Yaw   = 0.0f;
 	};
 
 }

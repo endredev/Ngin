@@ -54,6 +54,43 @@ namespace Ngin {
 			return m;
 		}
 
+		static Mat4 RotateX(float radians)
+		{
+			Mat4 m = Identity();
+			float c = std::cos(radians);
+			float s = std::sin(radians);
+			m.data[5]  =  c;
+			m.data[6]  =  s;
+			m.data[9]  = -s;
+			m.data[10] =  c;
+			return m;
+		}
+
+		static Mat4 RotateY(float radians)
+		{
+			Mat4 m = Identity();
+			float c = std::cos(radians);
+			float s = std::sin(radians);
+			m.data[0]  =  c;
+			m.data[2]  = -s;
+			m.data[8]  =  s;
+			m.data[10] =  c;
+			return m;
+		}
+
+		// Perspective projection (fovY in radians)
+		static Mat4 Perspective(float fovY, float aspect, float nearZ, float farZ)
+		{
+			Mat4 m;
+			float tanHalf = std::tan(fovY * 0.5f);
+			m.data[0]  =  1.0f / (aspect * tanHalf);
+			m.data[5]  =  1.0f / tanHalf;
+			m.data[10] = -(farZ + nearZ) / (farZ - nearZ);
+			m.data[11] = -1.0f;
+			m.data[14] = -(2.0f * farZ * nearZ) / (farZ - nearZ);
+			return m;
+		}
+
 		Mat4 operator*(const Mat4& rhs) const
 		{
 			Mat4 result;
