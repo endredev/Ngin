@@ -1,4 +1,5 @@
 #include "ngpch.h"
+#include <glad/gl.h>
 #include "WindowsWindow.h"
 
 #include <Ngin/Events/ApplicationEvent.h>
@@ -43,6 +44,8 @@ namespace Ngin{
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		if (!gladLoadGL((GLADloadfunc)glfwGetProcAddress))
+			NG_CORE_ERROR("Failed to initialize GLAD!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

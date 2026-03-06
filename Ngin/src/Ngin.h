@@ -7,7 +7,17 @@
 #include "Ngin/SubsystemManager.h";
 #include "Ngin/KeyCodes.h";
 #include "Ngin/MouseCodes.h";
-#include "Platforms/InputSubsystem.h";
+#include "Platforms/Windows/InputSubsystem.h";
+#include "Platforms/OpenGL/RendererSubsystem.h";
+#include "Ngin/Renderer/Camera.h";
+#include "Ngin/Renderer/Renderer.h";
+#include "Ngin/Renderer/Renderer2D.h";
+#include "Ngin/Renderer/OrthographicCamera.h";
+#include "Ngin/Renderer/PerspectiveCamera.h";
+#include "Ngin/Math/Mat4.h";
+#include "Ngin/Renderer/Buffer.h";
+#include "Ngin/Renderer/VertexArray.h";
+#include "Ngin/Renderer/Shader.h";
 
 // --- Entry point ---
 #include "Ngin/EntryPoint.h";

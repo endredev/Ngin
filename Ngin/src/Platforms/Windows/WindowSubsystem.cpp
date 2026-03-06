@@ -8,6 +8,8 @@ namespace Ngin {
 	void WindowSubsystem::OnInit()
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
+
+		// This lambda sends down the event to the application
 		m_Window->SetEventCallback([this](Event& e)
 		{
 			if (m_EventCallback)

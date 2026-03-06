@@ -16,6 +16,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ngin/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Ngin/vendor/GLFW/deps"
 
 include "Ngin/vendor/GLFW"
 	
@@ -40,8 +41,13 @@ project "Ngin"
 	{
 		"%{prj.name}/vendor/spdlog/include",
     	"%{prj.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
+
+	filter "files:Ngin/src/Platforms/OpenGL/Glad.cpp"
+		flags { "NoPCH" }
+	filter {}
 
 	links
 	{
