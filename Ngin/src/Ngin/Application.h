@@ -14,10 +14,16 @@ namespace Ngin {
 
 		void OnEvent(Event& event);
 		virtual void Tick(float deltaTime) {}
+		virtual void OnImGuiRender() {}
+		virtual void OnImGuiStyle() {}
+		virtual void OnMenuBar() {}
+		virtual void OnPropertiesPanel() {}
+		virtual void OnContentBrowserPanel() {}
 
 		SubsystemManager& GetSubsystemManager() { return m_SubsystemManager; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& event);
+		void RenderEditorLayout();
 
 		SubsystemManager m_SubsystemManager;
 		bool m_Running = true;

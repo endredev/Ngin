@@ -15,8 +15,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Ngin/vendor/GLFW/include"
-IncludeDir["GLAD"] = "Ngin/vendor/GLFW/deps"
+IncludeDir["GLFW"]  = "Ngin/vendor/GLFW/include"
+IncludeDir["GLAD"]  = "Ngin/vendor/GLFW/deps"
+IncludeDir["ImGui"]         = "Ngin/vendor/imgui"
+IncludeDir["ImGuiBackends"] = "Ngin/vendor/imgui/backends"
 
 include "Ngin/vendor/GLFW"
 	
@@ -34,18 +36,34 @@ project "Ngin"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/imgui/imgui.h",
+		"%{prj.name}/vendor/imgui/imgui_internal.h",
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_glfw.h",
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.h",
+		"%{prj.name}/vendor/imgui/imgui.cpp",
+		"%{prj.name}/vendor/imgui/imgui_draw.cpp",
+		"%{prj.name}/vendor/imgui/imgui_tables.cpp",
+		"%{prj.name}/vendor/imgui/imgui_widgets.cpp",
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_glfw.cpp",
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.cpp"
 	}
 
 	includedirs
 	{
 		"%{prj.name}/vendor/spdlog/include",
-    	"%{prj.name}/src",
+		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.ImGuiBackends}"
 	}
 
 	filter "files:Ngin/src/Platforms/OpenGL/Glad.cpp"
+		flags { "NoPCH" }
+	filter {}
+
+	filter "files:Ngin/vendor/imgui/backends/**.cpp or Ngin/vendor/imgui/**.cpp"
 		flags { "NoPCH" }
 	filter {}
 
@@ -63,7 +81,8 @@ project "Ngin"
 		defines
 		{
 			"NG_PLATFORM_WINDOWS",
-			"NG_BUILD_DLL"
+			"NG_BUILD_DLL",
+			"IMGUI_API=__declspec(dllexport)"
 		}
 
 		postbuildcommands
@@ -99,7 +118,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Ngin/vendor/spdlog/include",
-		"Ngin/src"
+		"Ngin/src",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
@@ -114,7 +134,8 @@ project "Sandbox"
 
 		defines
 		{
-			"NG_PLATFORM_WINDOWS"
+			"NG_PLATFORM_WINDOWS",
+			"IMGUI_API=__declspec(dllimport)"
 		}
 
 	filter "configurations:Debug"

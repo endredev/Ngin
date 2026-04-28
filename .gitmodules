@@ -1,3 +1,7 @@
 [submodule "Ngin/vendor/GLFW"]
 	path = Ngin/vendor/GLFW
 	url = https://github.com/endredev/glfw.git
+[submodule "Ngin/vendor/imgui"]
+	path = Ngin/vendor/imgui
+	url = https://github.com/ocornut/imgui
+	branch = docking
