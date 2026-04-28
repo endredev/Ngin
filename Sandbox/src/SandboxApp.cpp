@@ -1,4 +1,5 @@
 #include <Ngin.h>
+#include "EditorStyle.h"
 
 #include <memory>
 #include <cmath>
@@ -84,6 +85,16 @@ public:
 		m_CubeShader.reset(Ngin::Shader::Create(s_CubeVertSrc, s_CubeFragSrc));
 	}
 
+	void OnImGuiStyle() override
+	{
+		EditorStyle::Apply(m_Style);
+	}
+
+	void OnPropertiesPanel() override
+	{
+		ImGui::Text("Rotation: %.2f rad", m_Rotation);
+	}
+
 	void Tick(float deltaTime) override
 	{
 		m_Rotation += deltaTime;
@@ -111,6 +122,7 @@ private:
 	std::unique_ptr<Ngin::VertexArray>       m_CubeVA;
 	std::unique_ptr<Ngin::Shader>            m_CubeShader;
 	float                                    m_Rotation = 0.0f;
+	EditorStyle                              m_Style;
 };
 
 Ngin::Application* Ngin::CreateApplication()
