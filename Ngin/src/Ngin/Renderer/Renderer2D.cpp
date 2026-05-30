@@ -35,26 +35,24 @@ namespace Ngin {
 	static Renderer2DData s_Data;
 
 	static const char* s_VertexSrc = R"(
-		#version 330 core
-		layout(location = 0) in vec3 a_Position;
-		layout(location = 1) in vec4 a_Color;
-		uniform mat4 u_ViewProjection;
-		out vec4 v_Color;
-		void main()
+		cbuffer Constants : register(b0)
 		{
-			v_Color = a_Color;
-			gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+			column_major float4x4 u_ViewProjection;
+			column_major float4x4 u_Model;
+		};
+		struct VSInput { float3 Position : TEXCOORD0; float4 Color : TEXCOORD1; };
+		struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
+		PSInput main(VSInput input)
+		{
+			PSInput output;
+			output.Position = mul(u_ViewProjection, float4(input.Position, 1.0));
+			output.Color    = input.Color;
+			return output;
 		}
 	)";
-
 	static const char* s_FragmentSrc = R"(
-		#version 330 core
-		in vec4 v_Color;
-		out vec4 color;
-		void main()
-		{
-			color = v_Color;
-		}
+		struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
+		float4 main(PSInput input) : SV_TARGET { return input.Color; }
 	)";
 
 	void Renderer2D::Init()

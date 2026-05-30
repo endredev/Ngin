@@ -2,6 +2,8 @@
 
 #include "Ngin/Window.h"
 #include <GLFW/glfw3.h>
+#define GLFW_EXPOSE_NATIVE_WIN32
+#include <GLFW/glfw3native.h>
 
 namespace Ngin {
 	class WindowsWindow : public Window {
@@ -19,6 +21,8 @@ namespace Ngin {
 		bool IsVSync() const override;
 
 		void* GetNativeWindow() const override { return (void*)m_Window; }
+
+		HWND GetHWND() const { return glfwGetWin32Window(m_Window); }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();

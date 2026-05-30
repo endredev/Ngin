@@ -19,6 +19,7 @@ namespace Ngin {
 		virtual void OnMenuBar() {}
 		virtual void OnPropertiesPanel() {}
 		virtual void OnContentBrowserPanel() {}
+		virtual void OnViewportResize(uint32_t width, uint32_t height) {}
 
 		SubsystemManager& GetSubsystemManager() { return m_SubsystemManager; }
 	private:

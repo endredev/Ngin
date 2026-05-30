@@ -5,30 +5,24 @@
 #include <cmath>
 
 static const char* s_CubeVertSrc = R"(
-	#version 330 core
-	layout(location = 0) in vec3 a_Position;
-	layout(location = 1) in vec4 a_Color;
-
-	uniform mat4 u_ViewProjection;
-	uniform mat4 u_Model;
-
-	out vec4 v_Color;
-
-	void main()
+	cbuffer Constants : register(b0)
 	{
-		v_Color = a_Color;
-		gl_Position = u_ViewProjection * u_Model * vec4(a_Position, 1.0);
+		column_major float4x4 u_ViewProjection;
+		column_major float4x4 u_Model;
+	};
+	struct VSInput { float3 Position : TEXCOORD0; float4 Color : TEXCOORD1; };
+	struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
+	PSInput main(VSInput input)
+	{
+		PSInput output;
+		output.Position = mul(u_ViewProjection, mul(u_Model, float4(input.Position, 1.0)));
+		output.Color    = input.Color;
+		return output;
 	}
 )";
-
 static const char* s_CubeFragSrc = R"(
-	#version 330 core
-	in vec4 v_Color;
-	out vec4 color;
-	void main()
-	{
-		color = v_Color;
-	}
+	struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
+	float4 main(PSInput input) : SV_TARGET { return input.Color; }
 )";
 
 class Sandbox : public Ngin::Application
@@ -58,11 +52,11 @@ public:
 		};
 
 		uint32_t indices[] = {
-			0, 1, 2,  2, 3, 0,  // back
+			2, 1, 0,  0, 3, 2,  // back
 			4, 5, 6,  6, 7, 4,  // front
 			0, 4, 7,  7, 3, 0,  // left
-			1, 5, 6,  6, 2, 1,  // right
-			3, 2, 6,  6, 7, 3,  // top
+			6, 5, 1,  1, 2, 6,  // right
+			6, 2, 3,  3, 7, 6,  // top
 			0, 1, 5,  5, 4, 0,  // bottom
 		};
 
@@ -88,6 +82,11 @@ public:
 	void OnImGuiStyle() override
 	{
 		EditorStyle::Apply(m_Style);
+	}
+
+	void OnViewportResize(uint32_t width, uint32_t height) override
+	{
+		m_Camera3D->SetAspectRatio((float)width / (float)height);
 	}
 
 	void OnPropertiesPanel() override

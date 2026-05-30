@@ -19,8 +19,8 @@
     <Filter Include="src\Platforms">
       <UniqueIdentifier>{B40E5C85-20CF-D7BB-E909-213955891C98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Platforms\OpenGL">
-      <UniqueIdentifier>{68A52600-5434-B0C9-FD52-C4C4E9C0C06F}</UniqueIdentifier>
+    <Filter Include="src\Platforms\DirectX12">
+      <UniqueIdentifier>{79A1BC8F-E5D8-0427-EEE2-684A5A992B20}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platforms\Windows">
       <UniqueIdentifier>{EE2C175D-5A99-D257-238D-6AB58FB8F4BF}</UniqueIdentifier>
@@ -111,23 +111,26 @@
     <ClInclude Include="src\Ngin\Window.h">
       <Filter>src\Ngin</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\ImGuiSubsystem.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12Buffer.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12Context.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\OpenGLFramebuffer.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12Framebuffer.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\OpenGLShader.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12ImGuiSubsystem.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12RendererSubsystem.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\OpenGL\RendererSubsystem.h">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClInclude Include="src\Platforms\DirectX12\DX12Shader.h">
+      <Filter>src\Platforms\DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\DirectX12\DX12VertexArray.h">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClInclude>
     <ClInclude Include="src\Platforms\Windows\InputSubsystem.h">
       <Filter>src\Platforms\Windows</Filter>
@@ -141,10 +144,10 @@
     <ClInclude Include="src\ngpch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h">
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_dx12.h">
       <Filter>vendor\imgui\backends</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl3.h">
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h">
       <Filter>vendor\imgui\backends</Filter>
     </ClInclude>
     <ClInclude Include="vendor\imgui\imgui.h">
@@ -173,32 +176,35 @@
     <ClCompile Include="src\Ngin\Renderer\Renderer2D.cpp">
       <Filter>src\Ngin\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ngin\Renderer\RendererFactory.cpp">
+      <Filter>src\Ngin\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ngin\SubsystemManager.cpp">
       <Filter>src\Ngin</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\Glad.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12Buffer.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\ImGuiSubsystem.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12Context.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12Framebuffer.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\OpenGLFramebuffer.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12ImGuiSubsystem.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\OpenGLRenderCommand.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12RenderCommand.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\OpenGLShader.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12RendererSubsystem.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12Shader.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\OpenGL\RendererSubsystem.cpp">
-      <Filter>src\Platforms\OpenGL</Filter>
+    <ClCompile Include="src\Platforms\DirectX12\DX12VertexArray.cpp">
+      <Filter>src\Platforms\DirectX12</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\Windows\InputSubsystem.cpp">
       <Filter>src\Platforms\Windows</Filter>
@@ -212,10 +218,10 @@
     <ClCompile Include="src\ngpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp">
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_dx12.cpp">
       <Filter>vendor\imgui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp">
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp">
       <Filter>vendor\imgui\backends</Filter>
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui.cpp">

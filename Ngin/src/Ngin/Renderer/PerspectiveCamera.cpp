@@ -5,10 +5,24 @@
 namespace Ngin {
 
 	PerspectiveCamera::PerspectiveCamera(float fovY, float aspectRatio, float nearZ, float farZ)
+		: m_FovY(fovY), m_AspectRatio(aspectRatio), m_NearZ(nearZ), m_FarZ(farZ)
 	{
-		Mat4 proj = Mat4::Perspective(fovY, aspectRatio, nearZ, farZ);
-		memcpy(m_ProjectionMatrix, proj.data, sizeof(float) * 16);
+		RecalculateProjectionMatrix();
 		RecalculateViewMatrix();
+	}
+
+	void PerspectiveCamera::SetAspectRatio(float aspectRatio)
+	{
+		if (m_AspectRatio == aspectRatio) return;
+		m_AspectRatio = aspectRatio;
+		RecalculateProjectionMatrix();
+		RecalculateViewMatrix();
+	}
+
+	void PerspectiveCamera::RecalculateProjectionMatrix()
+	{
+		Mat4 proj = Mat4::Perspective(m_FovY, m_AspectRatio, m_NearZ, m_FarZ);
+		memcpy(m_ProjectionMatrix, proj.data, sizeof(float) * 16);
 	}
 
 	void PerspectiveCamera::SetPosition(float x, float y, float z)

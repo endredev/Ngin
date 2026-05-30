@@ -15,8 +15,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"]  = "Ngin/vendor/GLFW/include"
-IncludeDir["GLAD"]  = "Ngin/vendor/GLFW/deps"
+IncludeDir["GLFW"]          = "Ngin/vendor/GLFW/include"
 IncludeDir["ImGui"]         = "Ngin/vendor/imgui"
 IncludeDir["ImGuiBackends"] = "Ngin/vendor/imgui/backends"
 
@@ -40,13 +39,13 @@ project "Ngin"
 		"%{prj.name}/vendor/imgui/imgui.h",
 		"%{prj.name}/vendor/imgui/imgui_internal.h",
 		"%{prj.name}/vendor/imgui/backends/imgui_impl_glfw.h",
-		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.h",
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_dx12.h",
 		"%{prj.name}/vendor/imgui/imgui.cpp",
 		"%{prj.name}/vendor/imgui/imgui_draw.cpp",
 		"%{prj.name}/vendor/imgui/imgui_tables.cpp",
 		"%{prj.name}/vendor/imgui/imgui_widgets.cpp",
 		"%{prj.name}/vendor/imgui/backends/imgui_impl_glfw.cpp",
-		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.cpp"
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_dx12.cpp"
 	}
 
 	includedirs
@@ -54,23 +53,24 @@ project "Ngin"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.ImGuiBackends}"
 	}
 
-	filter "files:Ngin/src/Platforms/OpenGL/Glad.cpp"
+	filter "files:Ngin/vendor/imgui/backends/**.cpp or Ngin/vendor/imgui/**.cpp"
 		flags { "NoPCH" }
 	filter {}
 
-	filter "files:Ngin/vendor/imgui/backends/**.cpp or Ngin/vendor/imgui/**.cpp"
+	filter "files:Ngin/src/Platforms/DirectX12/**.cpp"
 		flags { "NoPCH" }
 	filter {}
 
 	links
 	{
 		"GLFW",
-		"opengl32.lib"
+		"d3d12.lib",
+		"dxgi.lib",
+		"d3dcompiler.lib"
 	}
 
 	filter "system:windows"
