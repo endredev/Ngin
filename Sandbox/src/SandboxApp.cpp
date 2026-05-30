@@ -4,26 +4,6 @@
 #include <memory>
 #include <cmath>
 
-static const char* s_CubeVertSrc = R"(
-	cbuffer Constants : register(b0)
-	{
-		column_major float4x4 u_ViewProjection;
-		column_major float4x4 u_Model;
-	};
-	struct VSInput { float3 Position : TEXCOORD0; float4 Color : TEXCOORD1; };
-	struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
-	PSInput main(VSInput input)
-	{
-		PSInput output;
-		output.Position = mul(u_ViewProjection, mul(u_Model, float4(input.Position, 1.0)));
-		output.Color    = input.Color;
-		return output;
-	}
-)";
-static const char* s_CubeFragSrc = R"(
-	struct PSInput { float4 Position : SV_POSITION; float4 Color : TEXCOORD0; };
-	float4 main(PSInput input) : SV_TARGET { return input.Color; }
-)";
 
 class Sandbox : public Ngin::Application
 {
@@ -38,26 +18,48 @@ public:
 		);
 		m_Camera3D->SetPosition(0.0f, 0.0f, 3.0f);
 
-		// Cube: 8 vertices, per-vertex color
+		// Cube: 24 vertices (4 per face), per-face normals
+		// Layout: Position(xyz), Normal(xyz)
 		float vertices[] = {
-			// Position              // Color (RGBA)
-			-0.5f, -0.5f, -0.5f,    0.9f, 0.2f, 0.2f, 1.0f,
-			 0.5f, -0.5f, -0.5f,    0.2f, 0.9f, 0.2f, 1.0f,
-			 0.5f,  0.5f, -0.5f,    0.2f, 0.2f, 0.9f, 1.0f,
-			-0.5f,  0.5f, -0.5f,    0.9f, 0.9f, 0.2f, 1.0f,
-			-0.5f, -0.5f,  0.5f,    0.9f, 0.2f, 0.9f, 1.0f,
-			 0.5f, -0.5f,  0.5f,    0.2f, 0.9f, 0.9f, 1.0f,
-			 0.5f,  0.5f,  0.5f,    0.9f, 0.9f, 0.9f, 1.0f,
-			-0.5f,  0.5f,  0.5f,    0.4f, 0.4f, 0.4f, 1.0f,
+			// Front  (z=+0.5, n=0,0,+1)
+			-0.5f,-0.5f, 0.5f,   0.0f, 0.0f, 1.0f,
+			 0.5f,-0.5f, 0.5f,   0.0f, 0.0f, 1.0f,
+			 0.5f, 0.5f, 0.5f,   0.0f, 0.0f, 1.0f,
+			-0.5f, 0.5f, 0.5f,   0.0f, 0.0f, 1.0f,
+			// Back   (z=-0.5, n=0,0,-1)
+			-0.5f,-0.5f,-0.5f,   0.0f, 0.0f,-1.0f,
+			-0.5f, 0.5f,-0.5f,   0.0f, 0.0f,-1.0f,
+			 0.5f, 0.5f,-0.5f,   0.0f, 0.0f,-1.0f,
+			 0.5f,-0.5f,-0.5f,   0.0f, 0.0f,-1.0f,
+			// Right  (x=+0.5, n=+1,0,0)
+			 0.5f,-0.5f, 0.5f,   1.0f, 0.0f, 0.0f,
+			 0.5f,-0.5f,-0.5f,   1.0f, 0.0f, 0.0f,
+			 0.5f, 0.5f,-0.5f,   1.0f, 0.0f, 0.0f,
+			 0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 0.0f,
+			// Left   (x=-0.5, n=-1,0,0)
+			-0.5f,-0.5f,-0.5f,  -1.0f, 0.0f, 0.0f,
+			-0.5f,-0.5f, 0.5f,  -1.0f, 0.0f, 0.0f,
+			-0.5f, 0.5f, 0.5f,  -1.0f, 0.0f, 0.0f,
+			-0.5f, 0.5f,-0.5f,  -1.0f, 0.0f, 0.0f,
+			// Top    (y=+0.5, n=0,+1,0)
+			 0.5f, 0.5f,-0.5f,   0.0f, 1.0f, 0.0f,
+			-0.5f, 0.5f,-0.5f,   0.0f, 1.0f, 0.0f,
+			-0.5f, 0.5f, 0.5f,   0.0f, 1.0f, 0.0f,
+			 0.5f, 0.5f, 0.5f,   0.0f, 1.0f, 0.0f,
+			// Bottom (y=-0.5, n=0,-1,0)
+			-0.5f,-0.5f,-0.5f,   0.0f,-1.0f, 0.0f,
+			 0.5f,-0.5f,-0.5f,   0.0f,-1.0f, 0.0f,
+			 0.5f,-0.5f, 0.5f,   0.0f,-1.0f, 0.0f,
+			-0.5f,-0.5f, 0.5f,   0.0f,-1.0f, 0.0f,
 		};
 
 		uint32_t indices[] = {
-			2, 1, 0,  0, 3, 2,  // back
-			4, 5, 6,  6, 7, 4,  // front
-			0, 4, 7,  7, 3, 0,  // left
-			6, 5, 1,  1, 2, 6,  // right
-			6, 2, 3,  3, 7, 6,  // top
-			0, 1, 5,  5, 4, 0,  // bottom
+			 0, 1, 2,  2, 3, 0,   // front
+			 4, 5, 6,  6, 7, 4,   // back
+			 8, 9,10, 10,11, 8,   // right
+			12,13,14, 14,15,12,   // left
+			16,17,18, 18,19,16,   // top
+			20,21,22, 22,23,20,   // bottom
 		};
 
 		m_CubeVA.reset(Ngin::VertexArray::Create());
@@ -67,7 +69,7 @@ public:
 		);
 		vb->SetLayout({
 			{ Ngin::ShaderDataType::Float3, "a_Position" },
-			{ Ngin::ShaderDataType::Float4, "a_Color"    }
+			{ Ngin::ShaderDataType::Float3, "a_Normal"   }
 		});
 		m_CubeVA->AddVertexBuffer(vb);
 
@@ -76,7 +78,6 @@ public:
 		);
 		m_CubeVA->SetIndexBuffer(ib);
 
-		m_CubeShader.reset(Ngin::Shader::Create(s_CubeVertSrc, s_CubeFragSrc));
 	}
 
 	void OnImGuiStyle() override
@@ -102,7 +103,7 @@ public:
 		Ngin::Renderer::BeginScene(*m_Camera3D);
 
 		Ngin::Mat4 model = Ngin::Mat4::RotateY(m_Rotation) * Ngin::Mat4::RotateX(m_Rotation * 0.5f);
-		Ngin::Renderer::Submit(m_CubeVA.get(), m_CubeShader.get(), model.data);
+		Ngin::Renderer::Submit(m_CubeVA.get(), Ngin::Renderer::GetDefaultShader(), model.data);
 		Ngin::Renderer::EndScene();
 
 		// 2D squares
@@ -118,9 +119,8 @@ private:
 
 	// 3D
 	std::unique_ptr<Ngin::PerspectiveCamera> m_Camera3D;
-	std::unique_ptr<Ngin::VertexArray>       m_CubeVA;
-	std::unique_ptr<Ngin::Shader>            m_CubeShader;
-	float                                    m_Rotation = 0.0f;
+	std::unique_ptr<Ngin::VertexArray> m_CubeVA;
+	float                              m_Rotation = 0.0f;
 	EditorStyle                              m_Style;
 };
 

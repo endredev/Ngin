@@ -17,6 +17,8 @@ namespace Ngin {
 		static void EndScene();
 
 		static void Submit(VertexArray* va, Shader* shader, const float* modelMatrix);
+
+		static Shader* GetDefaultShader();
 	};
 
 }
