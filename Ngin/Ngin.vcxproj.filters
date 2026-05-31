@@ -45,6 +45,9 @@
     <ClInclude Include="src\Ngin\Core.h">
       <Filter>src\Ngin</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ngin\EditorStyle.h">
+      <Filter>src\Ngin</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ngin\EntryPoint.h">
       <Filter>src\Ngin</Filter>
     </ClInclude>

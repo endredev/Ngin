@@ -2,6 +2,9 @@
 
 #include "Application.h"
 #include "Ngin/Log.h"
+#include "Ngin/EditorStyle.h"
+#include "Ngin/Renderer/Renderer.h"
+#include "Ngin/Renderer/PerspectiveCamera.h"
 #include "Platforms/Windows/WindowSubsystem.h"
 #include "Platforms/Windows/InputSubsystem.h"
 #include "Platforms/DirectX12/DX12RendererSubsystem.h"
@@ -23,6 +26,13 @@ Application::Application()
 	m_SubsystemManager.Register<DX12ImGuiSubsystem>(windowSys);
 
 	m_SubsystemManager.InitAll();
+
+	m_SceneCamera = std::make_unique<PerspectiveCamera>(
+		0.785398f,  // 45 deg fov
+		16.0f / 9.0f,
+		0.1f, 1000.0f
+	);
+	static_cast<PerspectiveCamera*>(m_SceneCamera.get())->SetPosition(0.0f, 0.0f, 3.0f);
 }
 
 Application::~Application()
@@ -32,7 +42,8 @@ Application::~Application()
 
 void Application::Run()
 {
-	OnImGuiStyle();
+	EditorStyle::Apply();
+
 	float lastTime = (float)glfwGetTime();
 
 	auto* renderer = m_SubsystemManager.Get<DX12RendererSubsystem>();
@@ -47,7 +58,9 @@ void Application::Run()
 		renderer->BeginFrame();
 		imgui->BeginFrame();
 
+		Renderer::BeginScene(*m_SceneCamera);
 		Tick(deltaTime);
+		Renderer::EndScene();
 
 		renderer->EndFrame();
 		RenderEditorLayout();
@@ -119,13 +132,16 @@ void Application::RenderEditorLayout()
 	ImGui::PopStyleVar();
 
 	ImVec2 viewportSize = ImGui::GetContentRegionAvail();
-
-	auto* renderer = m_SubsystemManager.Get<DX12RendererSubsystem>();
 	auto vw = (uint32_t)viewportSize.x;
 	auto vh = (uint32_t)viewportSize.y;
-	renderer->ResizeViewport(vw, vh);
-	if (vw > 0 && vh > 0) OnViewportResize(vw, vh);
-	uint64_t texID = renderer->GetViewportTextureID();
+
+	if (vw > 0 && vh > 0)
+	{
+		static_cast<PerspectiveCamera*>(m_SceneCamera.get())->SetAspectRatio((float)vw / (float)vh);
+		m_SubsystemManager.Get<DX12RendererSubsystem>()->ResizeViewport(vw, vh);
+	}
+
+	uint64_t texID = m_SubsystemManager.Get<DX12RendererSubsystem>()->GetViewportTextureID();
 	ImGui::Image((ImTextureID)(uint64_t)texID, viewportSize, ImVec2(0, 0), ImVec2(1, 1));
 
 	ImGui::End(); // Viewport
@@ -157,4 +173,4 @@ bool Application::OnWindowClosed(WindowCloseEvent& event)
 	return true;
 }
 
-}
+} // namespace Ngin

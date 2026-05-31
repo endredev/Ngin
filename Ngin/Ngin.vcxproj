@@ -152,6 +152,7 @@
     <ClInclude Include="src\Ngin.h" />
     <ClInclude Include="src\Ngin\Application.h" />
     <ClInclude Include="src\Ngin\Core.h" />
+    <ClInclude Include="src\Ngin\EditorStyle.h" />
     <ClInclude Include="src\Ngin\EntryPoint.h" />
     <ClInclude Include="src\Ngin\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Ngin\Events\Event.h" />
